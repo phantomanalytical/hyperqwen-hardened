@@ -1,0 +1,8 @@
+FROM hyperqwen-hardened:os-patched
+
+USER root
+
+RUN /app/venv/bin/python -m pip install \
+      --no-deps \
+      msgpack==1.2.3 \
+      pyarrow==23.0.1

@@ -1,0 +1,10 @@
+**
+!Dockerfile
+!Dockerfile.python
+!Dockerfile.pinned
+!pinned-src/
+!pinned-src/docker/
+!pinned-src/docker/prepare.sh
+!pinned-src/prepare/
+!pinned-src/prepare/fetch_fast_variant.py
+!pinned-src/prepare/fetch_dflash2.py

@@ -1,0 +1,7 @@
+FROM hyperqwen-hardened:python-patched
+
+USER root
+
+COPY pinned-src/docker/prepare.sh /app/docker/prepare.sh
+COPY pinned-src/prepare/fetch_fast_variant.py /app/prepare/fetch_fast_variant.py
+COPY pinned-src/prepare/fetch_dflash2.py /app/prepare/fetch_dflash2.py
