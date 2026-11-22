@@ -69,6 +69,71 @@ has not been formally classified as a false positive.
 A lower vulnerability count does not by itself establish
 that an image is secure.
 
+## Deployment Security
+
+This repository provides a hardened HyperQwen image build,
+not a preconfigured production deployment.
+
+HyperQwen includes a vLLM API server. Users are responsible
+for configuring and securing their own API deployment.
+
+### API Authentication
+
+Configure a unique API key before exposing the service.
+
+For example, generate a key locally:
+
+    openssl rand -hex 32
+
+Pass the key to the container using the VLLM_API_KEY
+environment variable or a protected environment file.
+
+Do not commit API keys, environment files containing secrets,
+or other credentials to Git.
+
+### Network Exposure
+
+Avoid exposing the inference API directly to the public
+internet.
+
+For local access, bind the published Docker port to
+127.0.0.1 rather than 0.0.0.0.
+
+For remote access, use a properly secured VPN or an
+authenticated reverse proxy with TLS and appropriate
+network access controls.
+
+API authentication and localhost binding provide different
+layers of protection. Using both is recommended.
+
+### GPU and Model Storage
+
+Users must provide their own compatible NVIDIA GPU,
+model storage, and any required model downloads.
+
+Persist model and cache data outside the container.
+Protect these directories from unauthorized modification.
+
+Model preparation may download external artifacts.
+Review and verify external model sources before use.
+
+### Runtime Privileges
+
+The current image runs as root.
+
+Use appropriate Docker isolation and avoid unnecessary
+privileged mode, host networking, or sensitive host mounts.
+
+Do not mount the Docker socket into the inference container.
+
+### Security Responsibility
+
+Each deployment requires its own authentication,
+network configuration, patch management, and monitoring.
+
+A successful vulnerability scan does not guarantee
+that a deployment is secure.
+
 ## Limitations
 
 - The image currently runs as root.
