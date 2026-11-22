@@ -1,0 +1,12 @@
+# HyperQwen final Python tooling hardening.
+# Builds on the pinned source and dependency stages.
+FROM hyperqwen-hardened:pinned
+
+USER root
+
+# Update pip and its bundled dependencies.
+# Addresses findings in vendored certifi, msgpack, and urllib3.
+RUN /app/venv/bin/python -m pip install \
+    --no-cache-dir \
+    --upgrade \
+    pip==26.3

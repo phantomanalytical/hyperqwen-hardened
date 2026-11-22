@@ -2,6 +2,7 @@
 !Dockerfile
 !Dockerfile.python
 !Dockerfile.pinned
+!Dockerfile.runtime
 !pinned-src/
 !pinned-src/docker/
 !pinned-src/docker/prepare.sh
